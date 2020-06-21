@@ -6,8 +6,8 @@ import android.hardware.Sensor
 import android.hardware.SensorEvent
 import android.hardware.SensorEventListener
 import android.hardware.SensorManager
+import android.opengl.GLSurfaceView
 import android.os.Bundle
-import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : Activity(), SensorEventListener {
@@ -20,9 +20,13 @@ class MainActivity : Activity(), SensorEventListener {
     private var gravity: FloatArray = FloatArray(3)
     private var geomagnetic: FloatArray = FloatArray(3)
 
+    private var rotationMatrix = FloatArray(16)
+
+    // rendering
+    private lateinit var arrowView: GLSurfaceView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
@@ -32,6 +36,9 @@ class MainActivity : Activity(), SensorEventListener {
         } else {
             Toast.makeText(this, "Could not create sensors", Toast.LENGTH_SHORT).show()
         }
+
+        arrowView = ArrowView(this, rotationMatrix)
+        setContentView(arrowView)
     }
 
     override fun onResume() {
@@ -65,18 +72,18 @@ class MainActivity : Activity(), SensorEventListener {
     }
 
     private fun updateValues() {
-        val r = FloatArray(9)
         val i = FloatArray(9)
-        SensorManager.getRotationMatrix(r, i, gravity, geomagnetic)
-        val orientation = FloatArray(3)
-        SensorManager.getOrientation(r, orientation)
+        SensorManager.getRotationMatrix(rotationMatrix, i, gravity, geomagnetic)
 
-        val azimuthValue = findViewById<TextView>(R.id.azimuthValue)
-        val pitchValue = findViewById<TextView>(R.id.pitchValue)
-        val rollValue = findViewById<TextView>(R.id.rollValue)
-
-        azimuthValue.text = orientation[0].toString()
-        pitchValue.text = orientation[1].toString()
-        rollValue.text = orientation[2].toString()
+//        val orientation = FloatArray(3)
+//        SensorManager.getOrientation(rotationMatrix, orientation)
+//
+//        val azimuthValue = findViewById<TextView>(R.id.azimuthValue)
+//        val pitchValue = findViewById<TextView>(R.id.pitchValue)
+//        val rollValue = findViewById<TextView>(R.id.rollValue)
+//
+//        azimuthValue.text = orientation[0].toString()
+//        pitchValue.text = orientation[1].toString()
+//        rollValue.text = orientation[2].toString()
     }
 }
