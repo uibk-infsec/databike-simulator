@@ -13,7 +13,8 @@ class DataPointViewModel(application: Application) : AndroidViewModel(applicatio
     val allDataPoints: LiveData<List<DataPoint>>
 
     init {
-        val dataPointDao = DataPointRoomDatabase.getDatabase(application).dataPointDao()
+        val dataPointDao =
+            DataPointRoomDatabase.getDatabase(application, viewModelScope).dataPointDao()
         repository = DataPointRepository(dataPointDao)
         allDataPoints = repository.allDataPoints
     }
