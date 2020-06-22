@@ -11,11 +11,11 @@ const val COORDINATES_PER_VERTEX = 3
 
 class Arrow {
     private val vertices: FloatArray = floatArrayOf(
-        0f, 0f, 1f,         //front
-        -.3f, -.3f, -1f,    //bottom left
-        -.3f, .3f, -1f,     //top left
-        .3f, -.3f, -1f,     //bottom right
-        .3f, .3f, -1f       //top right
+        0f, 1f, 0f,         //front
+        -.3f, 0f, -.3f,    //bottom left
+        -.3f, 0f, .3f,     //top left
+        .3f, 0f, -.3f,     //bottom right
+        .3f, 0f, .3f       //top right
     )
 
     private val vertexBuffer: FloatBuffer =
@@ -75,7 +75,7 @@ class Arrow {
                 "uniform mat4 uRotationMatrix;" +
                 "attribute vec4 vPosition;" +
                 "void main() {" +
-                "  gl_Position = uMVPMatrix * uRotationMatrix * vPosition;" +
+                "  gl_Position = uRotationMatrix * vPosition;" +
                 "}"
 
     private val fragmentShaderCode =
@@ -133,6 +133,15 @@ class Arrow {
         )
         GLES20.glEnableVertexAttribArray(positionHandle)
 
+        // draw faces
+        GLES20.glUniform4fv(colorHandle, 1, faceColor, 0)
+        GLES20.glDrawElements(
+            GLES20.GL_TRIANGLES,
+            faceOrder.size,
+            GLES20.GL_UNSIGNED_SHORT,
+            faceElementBuffer
+        )
+
         // draw edges
         GLES20.glLineWidth(5.3f)
         GLES20.glUniform4fv(colorHandle, 1, edgeColor, 0)
@@ -141,15 +150,6 @@ class Arrow {
             edgeOrder.size,
             GLES20.GL_UNSIGNED_SHORT,
             edgeElementBuffer
-        )
-
-        // draw faces
-        GLES20.glUniform4fv(colorHandle, 1, faceColor, 0)
-        GLES20.glDrawElements(
-            GLES20.GL_TRIANGLES,
-            faceOrder.size,
-            GLES20.GL_UNSIGNED_SHORT,
-            faceElementBuffer
         )
 
 
