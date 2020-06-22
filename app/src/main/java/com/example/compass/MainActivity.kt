@@ -8,6 +8,7 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.opengl.GLSurfaceView
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : Activity(), SensorEventListener {
@@ -37,8 +38,9 @@ class MainActivity : Activity(), SensorEventListener {
             Toast.makeText(this, "Could not create sensors", Toast.LENGTH_SHORT).show()
         }
 
-        arrowView = ArrowView(this, rotationMatrix)
-        setContentView(arrowView)
+//        arrowView = ArrowView(this, rotationMatrix)
+//        setContentView(arrowView)
+        setContentView(R.layout.activity_main)
     }
 
     override fun onResume() {
@@ -75,15 +77,21 @@ class MainActivity : Activity(), SensorEventListener {
         val i = FloatArray(9)
         SensorManager.getRotationMatrix(rotationMatrix, i, gravity, geomagnetic)
 
-//        val orientation = FloatArray(3)
-//        SensorManager.getOrientation(rotationMatrix, orientation)
-//
-//        val azimuthValue = findViewById<TextView>(R.id.azimuthValue)
-//        val pitchValue = findViewById<TextView>(R.id.pitchValue)
-//        val rollValue = findViewById<TextView>(R.id.rollValue)
-//
-//        azimuthValue.text = orientation[0].toString()
-//        pitchValue.text = orientation[1].toString()
-//        rollValue.text = orientation[2].toString()
+        val orientation = FloatArray(3)
+        SensorManager.getOrientation(rotationMatrix, orientation)
+
+        val cleanedOrientation = orientation.map { x -> x * 180 / Math.PI }
+
+        val azimuth = cleanedOrientation[0]
+        val pitch = cleanedOrientation[1]
+        val roll = cleanedOrientation[2]
+
+        val azimuthValue = findViewById<TextView>(R.id.azimuthValue)
+        val pitchValue = findViewById<TextView>(R.id.pitchValue)
+        val rollValue = findViewById<TextView>(R.id.rollValue)
+
+        azimuthValue.text = getString(R.string.degree_template).format(azimuth)
+        pitchValue.text = getString(R.string.degree_template).format(pitch)
+        rollValue.text = getString(R.string.degree_template).format(roll)
     }
 }
