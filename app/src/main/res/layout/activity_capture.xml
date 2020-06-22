@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DataPointCaptureActivity">
+
+    <TextView
+        android:id="@+id/xLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/absRotX"
+        app:layout_constraintBottom_toTopOf="@+id/yLabel"
+        app:layout_constraintEnd_toStartOf="@+id/absRotXValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/yLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/absRotY"
+        app:layout_constraintBottom_toTopOf="@+id/zLabel"
+        app:layout_constraintEnd_toStartOf="@+id/absRotYValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xLabel" />
+
+    <TextView
+        android:id="@+id/zLabel"
+        android:layout_width="53dp"
+        android:layout_height="wrap_content"
+        android:text="@string/absRotZ"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/absRotZValue"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yLabel" />
+
+    <Button
+        android:id="@+id/captureButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/captureButtonText"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zLabel" />
+
+    <EditText
+        android:id="@+id/absRotXValue"
+        android:layout_width="60pt"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBaseline_toBaselineOf="@+id/xLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/xLabel" />
+
+    <EditText
+        android:id="@+id/absRotYValue"
+        android:layout_width="60pt"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBaseline_toBaselineOf="@+id/yLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/yLabel" />
+
+    <EditText
+        android:id="@+id/absRotZValue"
+        android:layout_width="60pt"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBaseline_toBaselineOf="@+id/zLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/zLabel" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
