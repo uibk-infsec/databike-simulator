@@ -10,18 +10,20 @@ import android.opengl.GLSurfaceView
 import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : Activity(), SensorEventListener {
     // sensors
     private lateinit var sensorManager: SensorManager
     private var accelerometer: Sensor? = null
-    private var magnetometer: Sensor? = null
 
     // sensor values
     private var gravity: FloatArray = FloatArray(3)
-    private var geomagnetic: FloatArray = FloatArray(3)
 
-    private var rotationMatrix = FloatArray(16)
+    // text Views
+    private lateinit var xTextView: TextView
+    private lateinit var yTextView: TextView
+    private lateinit var zTextView: TextView
 
     // rendering
     private lateinit var arrowView: GLSurfaceView
@@ -31,8 +33,7 @@ class MainActivity : Activity(), SensorEventListener {
 
         sensorManager = getSystemService(Context.SENSOR_SERVICE) as SensorManager
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER)
-        magnetometer = sensorManager.getDefaultSensor(Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR)
-        if (accelerometer != null && magnetometer != null) {
+        if (accelerometer != null) {
             Toast.makeText(this, "Sensors successfully created", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Could not create sensors", Toast.LENGTH_SHORT).show()
@@ -41,14 +42,16 @@ class MainActivity : Activity(), SensorEventListener {
 //        arrowView = ArrowView(this, rotationMatrix)
 //        setContentView(arrowView)
         setContentView(R.layout.activity_main)
+        xTextView = findViewById(R.id.xValue)
+        yTextView = findViewById(R.id.yValue)
+        zTextView = findViewById(R.id.zValue)
     }
 
     override fun onResume() {
         super.onResume()
 
-        if (accelerometer != null && magnetometer != null) {
+        if (accelerometer != null) {
             sensorManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_NORMAL)
-            sensorManager.registerListener(this, magnetometer, SensorManager.SENSOR_DELAY_NORMAL)
         } else {
             TODO("Sensors not available, implement error handling")
         }
@@ -65,33 +68,14 @@ class MainActivity : Activity(), SensorEventListener {
     }
 
     override fun onSensorChanged(event: SensorEvent) {
-        if (event.sensor == accelerometer)
-            gravity = event.values
-        if (event.sensor == magnetometer)
-            geomagnetic = event.values
+        gravity = event.values
 
-        updateValues()
-    }
+        val x = gravity[0]
+        val y = gravity[1]
+        val z = gravity[2]
 
-    private fun updateValues() {
-        val i = FloatArray(9)
-        SensorManager.getRotationMatrix(rotationMatrix, i, gravity, geomagnetic)
-
-        val orientation = FloatArray(3)
-        SensorManager.getOrientation(rotationMatrix, orientation)
-
-        val cleanedOrientation = orientation.map { x -> x * 180 / Math.PI }
-
-        val azimuth = cleanedOrientation[0]
-        val pitch = cleanedOrientation[1]
-        val roll = cleanedOrientation[2]
-
-        val azimuthValue = findViewById<TextView>(R.id.azimuthValue)
-        val pitchValue = findViewById<TextView>(R.id.pitchValue)
-        val rollValue = findViewById<TextView>(R.id.rollValue)
-
-        azimuthValue.text = getString(R.string.degree_template).format(azimuth)
-        pitchValue.text = getString(R.string.degree_template).format(pitch)
-        rollValue.text = getString(R.string.degree_template).format(roll)
+        xTextView.text = getString(R.string.degree_template).format(x)
+        yTextView.text = getString(R.string.degree_template).format(y)
+        zTextView.text = getString(R.string.degree_template).format(z)
     }
 }

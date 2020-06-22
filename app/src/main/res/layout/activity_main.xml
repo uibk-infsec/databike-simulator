@@ -7,12 +7,12 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/azimuthLabel"
+        android:id="@+id/xLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="azimuth:"
+        android:text="x:"
         app:layout_constraintBottom_toTopOf="@+id/pitchLabel"
-        app:layout_constraintEnd_toStartOf="@+id/azimuthValue"
+        app:layout_constraintEnd_toStartOf="@+id/xValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,33 +20,33 @@
         android:id="@+id/pitchLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pitch:"
+        android:text="y:"
         app:layout_constraintBottom_toTopOf="@+id/rollLabel"
-        app:layout_constraintEnd_toStartOf="@+id/pitchValue"
+        app:layout_constraintEnd_toStartOf="@+id/yValue"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/azimuthLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/xLabel" />
 
     <TextView
         android:id="@+id/rollLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="roll:"
+        android:text="z:"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rollValue"
+        app:layout_constraintEnd_toStartOf="@+id/zValue"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pitchLabel" />
 
     <TextView
-        android:id="@+id/azimuthValue"
+        android:id="@+id/xValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
-        app:layout_constraintBaseline_toBaselineOf="@+id/azimuthLabel"
+        app:layout_constraintBaseline_toBaselineOf="@+id/xLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/azimuthLabel" />
+        app:layout_constraintStart_toEndOf="@+id/xLabel" />
 
     <TextView
-        android:id="@+id/pitchValue"
+        android:id="@+id/yValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
@@ -55,7 +55,7 @@
         app:layout_constraintStart_toEndOf="@+id/pitchLabel" />
 
     <TextView
-        android:id="@+id/rollValue"
+        android:id="@+id/zValue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
