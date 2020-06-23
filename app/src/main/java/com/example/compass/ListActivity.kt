@@ -4,8 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
-import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -41,6 +42,25 @@ class ListActivity : AppCompatActivity() {
                 startActivityForResult(intent, newDataPointActivityRequestCode)
             })
         }
+
+        setSupportActionBar(findViewById(R.id.toolbar))
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        super.onCreateOptionsMenu(menu)
+
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        super.onOptionsItemSelected(item)
+
+        if (item.title == getString(R.string.action_export)) {
+            Toast.makeText(this, "Exporting data", Toast.LENGTH_SHORT).show()
+            // TODO: export data
+        }
+        return true
     }
 
     private val newDataPointActivityRequestCode = 1
