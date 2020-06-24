@@ -23,8 +23,8 @@
                     <pedalrotdir>1</pedalrotdir>
                     <gearfront>1</gearfront>
                     <gearrear>1</gearrear>
-                    <brakeright>0</brakeright>
-                    <brakeleft>0</brakeleft>
+                    <brakerear>0</brakerear>
+                    <brakefront>0</brakefront>
                     <suspfront>0</suspfront>
                     <susprear>0</susprear>
                     <seatpos>0</seatpos>
@@ -46,8 +46,8 @@
                     <pedalrotdir>1</pedalrotdir>
                     <gearfront>1</gearfront>
                     <gearrear>1</gearrear>
-                    <brakeright>0</brakeright>
-                    <brakeleft>0.2</brakeleft>
+                    <brakerear>0</brakerear>
+                    <brakefront>0.2</brakefront>
                     <suspfront>0</suspfront>
                     <susprear>0</susprear>
                     <seatpos>0</seatpos>
@@ -69,8 +69,8 @@
                     <pedalrotdir>1</pedalrotdir>
                     <gearfront>1</gearfront>
                     <gearrear>1</gearrear>
-                    <brakeright>0.5</brakeright>
-                    <brakeleft>0</brakeleft>
+                    <brakerear>0.5</brakerear>
+                    <brakefront>0</brakefront>
                     <suspfront>150</suspfront>
                     <susprear>20</susprear>
                     <seatpos>0</seatpos>
@@ -92,8 +92,8 @@
                     <pedalrotdir>1</pedalrotdir>
                     <gearfront>1</gearfront>
                     <gearrear>1</gearrear>
-                    <brakeright>0.5</brakeright>
-                    <brakeleft>0</brakeleft>
+                    <brakerear>0.5</brakerear>
+                    <brakefront>0</brakefront>
                     <suspfront>20</suspfront>
                     <susprear>0</susprear>
                     <seatpos>0</seatpos>
@@ -115,8 +115,8 @@
                     <pedalrotdir>1</pedalrotdir>
                     <gearfront>1</gearfront>
                     <gearrear>1</gearrear>
-                    <brakeright>0.9</brakeright>
-                    <brakeleft>0</brakeleft>
+                    <brakerear>0.9</brakerear>
+                    <brakefront>0</brakefront>
                     <suspfront>0</suspfront>
                     <susprear>0</susprear>
                     <seatpos>10</seatpos>

@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
@@ -37,10 +38,10 @@ class ListActivity : AppCompatActivity() {
             Observer { dataPoints -> dataPoints?.let { adapter.setDataPoints(it) } })
 
         findViewById<FloatingActionButton>(R.id.fab).let {
-            it.setOnClickListener(View.OnClickListener {
+            it.setOnClickListener {
                 val intent = Intent(this@ListActivity, NewDataPointActivity::class.java)
                 startActivityForResult(intent, newDataPointActivityRequestCode)
-            })
+            }
         }
 
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -58,7 +59,10 @@ class ListActivity : AppCompatActivity() {
 
         if (item.title == getString(R.string.action_export)) {
             Toast.makeText(this, "Exporting data", Toast.LENGTH_SHORT).show()
+
             // TODO: export data
+            val dataPoints = dataPointViewModel.allDataPoints.value!!
+            Log.v("Export", dataPoints[0].getXml())
         }
         return true
     }
@@ -74,11 +78,7 @@ class ListActivity : AppCompatActivity() {
                 val absY = data.getFloatExtra(NewDataPointActivity.ABS_Y_REPLY, 0f)
                 val absZ = data.getFloatExtra(NewDataPointActivity.ABS_Z_REPLY, 0f)
 
-                if (absX != null && absY != null && absZ != null)
-                    dataPointViewModel.insert(DataPoint(0, absX, absY, absZ))
-                else
-                    Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_SHORT)
-                        .show()
+                dataPointViewModel.insert(DataPoint(0, absX, absY, absZ))
             } else {
                 Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_SHORT)
                     .show()
