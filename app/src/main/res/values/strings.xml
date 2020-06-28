@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Compass</string>
+    <string name="app_name">Databike Companion</string>
     <string name="degree_template">%.3f</string>
     <string name="captureButtonText">Capture</string>
     <string name="absRotX">absRotX</string>

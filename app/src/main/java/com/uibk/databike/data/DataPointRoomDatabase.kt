@@ -50,9 +50,9 @@ abstract class DataPointRoomDatabase : RoomDatabase() {
         suspend fun populateDatabase(dataPointDao: DataPointDao) {
             dataPointDao.deleteAll()
 
-            dataPointDao.insert(DataPoint(0, 1f, 1f, 1f))
-            dataPointDao.insert(DataPoint(0, 2f, 2f, 2f))
-            dataPointDao.insert(DataPoint(0, 3f, 3f, 3f))
+            dataPointDao.insert(DataPoint(0, 0,1f, 1f, 1f))
+            dataPointDao.insert(DataPoint(0, 0, 2f, 2f, 2f))
+            dataPointDao.insert(DataPoint(0, 1, 3f, 3f, 3f))
 
         }
     }

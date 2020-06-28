@@ -38,7 +38,8 @@ class ListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         dataPointViewModel =
-            ViewModelProvider(this,
+            ViewModelProvider(
+                this,
                 DataPointViewModelFactory(this.application)
             ).get(
                 DataPointViewModel::class.java
@@ -71,7 +72,8 @@ class ListActivity : AppCompatActivity() {
             val intent = Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                 addCategory(Intent.CATEGORY_OPENABLE)
                 type = "application/gpx"
-                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                flags =
+                    Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
                 putExtra(Intent.EXTRA_TITLE, "trace.gpx")
             }
             startActivityForResult(intent, pickExportFile)
@@ -85,6 +87,7 @@ class ListActivity : AppCompatActivity() {
 
         if (requestCode == newDataPointActivityRequestCode && resultCode == Activity.RESULT_OK) {
             if (data != null) {
+                val segmentId = data.getIntExtra(NewDataPointActivity.SEGMENT_ID_REPLY, 0)
                 val absX = data.getFloatExtra(NewDataPointActivity.ABS_X_REPLY, 0f)
                 val absY = data.getFloatExtra(NewDataPointActivity.ABS_Y_REPLY, 0f)
                 val absZ = data.getFloatExtra(NewDataPointActivity.ABS_Z_REPLY, 0f)
@@ -92,6 +95,7 @@ class ListActivity : AppCompatActivity() {
                 dataPointViewModel.insert(
                     DataPoint(
                         0,
+                        segmentId,
                         absX,
                         absY,
                         absZ
@@ -123,9 +127,9 @@ class ListActivity : AppCompatActivity() {
                 content
             )
 
-            contentResolver.openFileDescriptor(uri, "w")?.use{ parcelFileDescriptor ->
-                FileOutputStream(parcelFileDescriptor.fileDescriptor).use{ fileOutputStream ->
-                    PrintWriter(fileOutputStream).use {printWriter ->
+            contentResolver.openFileDescriptor(uri, "w")?.use { parcelFileDescriptor ->
+                FileOutputStream(parcelFileDescriptor.fileDescriptor).use { fileOutputStream ->
+                    PrintWriter(fileOutputStream).use { printWriter ->
                         printWriter.print(export)
                     }
                 }

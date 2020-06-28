@@ -46,8 +46,9 @@ class NewDataPointActivity : Activity() {
     }
 
     companion object {
-        const val ABS_X_REPLY = "com.example.compass.ABS_X_REPLY"
-        const val ABS_Y_REPLY = "com.example.compass.ABS_Y_REPLY"
-        const val ABS_Z_REPLY = "com.example.compass.ABS_Z_REPLY"
+        const val SEGMENT_ID_REPLY = "com.uibk.databike.SEGMENT_ID_REPLY"
+        const val ABS_X_REPLY = "com.uibk.databike.ABS_X_REPLY"
+        const val ABS_Y_REPLY = "com.uibk.databike.ABS_Y_REPLY"
+        const val ABS_Z_REPLY = "com.uibk.databike.ABS_Z_REPLY"
     }
 }
