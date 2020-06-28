@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uibk.databike.NewDataPointActivity">
+    tools:context="com.uibk.databike.view.NewDataPointActivity">
 
     <TextView
         android:id="@+id/xLabel"

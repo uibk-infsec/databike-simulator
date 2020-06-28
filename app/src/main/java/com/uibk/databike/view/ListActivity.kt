@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.view
 
 import android.app.Activity
 import android.content.Intent
@@ -14,6 +14,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databike.R
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.uibk.databike.XmlBuilder
+import com.uibk.databike.data.DataPoint
+import com.uibk.databike.data.DataPointViewModel
+import com.uibk.databike.data.DataPointViewModelFactory
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
 import java.io.PrintWriter
@@ -34,7 +38,9 @@ class ListActivity : AppCompatActivity() {
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         dataPointViewModel =
-            ViewModelProvider(this, DataPointViewModelFactory(this.application)).get(
+            ViewModelProvider(this,
+                DataPointViewModelFactory(this.application)
+            ).get(
                 DataPointViewModel::class.java
             )
         dataPointViewModel.allDataPoints.observe(
@@ -83,7 +89,14 @@ class ListActivity : AppCompatActivity() {
                 val absY = data.getFloatExtra(NewDataPointActivity.ABS_Y_REPLY, 0f)
                 val absZ = data.getFloatExtra(NewDataPointActivity.ABS_Z_REPLY, 0f)
 
-                dataPointViewModel.insert(DataPoint(0, absX, absY, absZ))
+                dataPointViewModel.insert(
+                    DataPoint(
+                        0,
+                        absX,
+                        absY,
+                        absZ
+                    )
+                )
             } else {
                 Toast.makeText(applicationContext, R.string.empty_not_saved, Toast.LENGTH_SHORT)
                     .show()
@@ -100,7 +113,8 @@ class ListActivity : AppCompatActivity() {
             }
 
             val dataPoints = dataPointViewModel.allDataPoints.value!!
-            val content = XmlBuilder.buildTrackFromPoints(dataPoints)
+            val content =
+                XmlBuilder.buildTrackFromPoints(dataPoints)
             val export = XmlBuilder.buildFullTrack(
                 "visualizing_the_databike",
                 "Generation Test Track",

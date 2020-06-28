@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.data
 
 import android.content.Context
 import androidx.room.Database
@@ -17,7 +17,8 @@ abstract class DataPointRoomDatabase : RoomDatabase() {
         private var INSTANCE: DataPointRoomDatabase? = null
 
         fun getDatabase(context: Context, scope: CoroutineScope): DataPointRoomDatabase {
-            val tempInstance = INSTANCE
+            val tempInstance =
+                INSTANCE
             if (tempInstance != null)
                 return tempInstance
 
@@ -26,7 +27,11 @@ abstract class DataPointRoomDatabase : RoomDatabase() {
                     context.applicationContext,
                     DataPointRoomDatabase::class.java,
                     "data_point_database"
-                ).addCallback(DataPointDatabaseCallback(scope)).build()
+                ).addCallback(
+                    DataPointDatabaseCallback(
+                        scope
+                    )
+                ).build()
 
                 INSTANCE = instance
                 return instance

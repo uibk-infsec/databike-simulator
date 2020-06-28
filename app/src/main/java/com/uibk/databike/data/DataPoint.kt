@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.data
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

@@ -1,12 +1,12 @@
-package com.uibk.databike
+package com.uibk.databike.data
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.uibk.databike.DataPoint
-import com.uibk.databike.DataPointRepository
-import com.uibk.databike.DataPointRoomDatabase
+import com.uibk.databike.data.DataPoint
+import com.uibk.databike.data.DataPointRepository
+import com.uibk.databike.data.DataPointRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

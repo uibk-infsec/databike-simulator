@@ -1,5 +1,6 @@
 package com.uibk.databike
 
+import com.uibk.databike.data.DataPoint
 import kotlin.text.StringBuilder
 
 object XmlBuilder {

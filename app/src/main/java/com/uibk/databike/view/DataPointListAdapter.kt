@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.view
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databike.R
+import com.uibk.databike.data.DataPoint
 
 class DataPointListAdapter internal constructor(context: Context) :
     RecyclerView.Adapter<DataPointListAdapter.DataPointViewHolder>() {

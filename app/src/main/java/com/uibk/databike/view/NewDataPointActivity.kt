@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.view
 
 import android.app.Activity
 import android.content.Intent
