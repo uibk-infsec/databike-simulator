@@ -10,31 +10,34 @@
         android:id="@+id/xLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/absRotX"
-        app:layout_constraintBottom_toTopOf="@+id/yLabel"
-        app:layout_constraintEnd_toStartOf="@+id/absRotXValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/absRotXValue"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/segmentIdValue" />
 
     <TextView
         android:id="@+id/yLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/absRotY"
-        app:layout_constraintBottom_toTopOf="@+id/zLabel"
-        app:layout_constraintEnd_toStartOf="@+id/absRotYValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/xLabel" />
+        app:layout_constraintBottom_toTopOf="@+id/absRotYValue"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/absRotXValue" />
 
     <TextView
         android:id="@+id/zLabel"
         android:layout_width="53dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
         android:text="@string/absRotZ"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/absRotZValue"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/yLabel" />
+        app:layout_constraintBottom_toTopOf="@+id/absRotZValue"
+        app:layout_constraintStart_toStartOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/absRotYValue" />
 
     <Button
         android:id="@+id/captureButton"
@@ -44,42 +47,81 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/zLabel" />
+        app:layout_constraintTop_toBottomOf="@+id/absRotZValue" />
 
     <EditText
         android:id="@+id/absRotXValue"
-        android:layout_width="60pt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="0"
         android:inputType="textPersonName"
         android:textAlignment="viewEnd"
-        app:layout_constraintBaseline_toBaselineOf="@+id/xLabel"
+        app:layout_constraintBottom_toTopOf="@+id/yLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/xLabel" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/xLabel" />
+
+    <EditText
+        android:id="@+id/segmentIdValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="0"
+        android:inputType="textPersonName"
+        android:textAlignment="viewEnd"
+        app:layout_constraintBottom_toTopOf="@+id/xLabel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <EditText
         android:id="@+id/absRotYValue"
-        android:layout_width="60pt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="0"
         android:inputType="textPersonName"
         android:textAlignment="viewEnd"
-        app:layout_constraintBaseline_toBaselineOf="@+id/yLabel"
+        app:layout_constraintBottom_toTopOf="@+id/zLabel"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/yLabel" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/yLabel" />
 
     <EditText
         android:id="@+id/absRotZValue"
-        android:layout_width="60pt"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
         android:ems="10"
         android:hint="0"
         android:inputType="textPersonName"
         android:textAlignment="viewEnd"
-        app:layout_constraintBaseline_toBaselineOf="@+id/zLabel"
+        app:layout_constraintBottom_toTopOf="@+id/captureButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/zLabel" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/zLabel" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="8dp"
+        android:text="@string/segment"
+        app:layout_constraintBottom_toTopOf="@+id/segmentIdValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.19"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
