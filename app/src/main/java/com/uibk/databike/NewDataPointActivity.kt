@@ -1,10 +1,11 @@
-package com.example.compass
+package com.uibk.databike
 
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import com.example.databike.R
 
 class NewDataPointActivity : Activity() {
 

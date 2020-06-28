@@ -1,8 +1,7 @@
-package com.example.compass
+package com.uibk.databike
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.lang.StringBuilder
 
 
 @Entity(tableName = "data_point")

@@ -1,4 +1,4 @@
-package com.example.compass
+package com.uibk.databike
 
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView

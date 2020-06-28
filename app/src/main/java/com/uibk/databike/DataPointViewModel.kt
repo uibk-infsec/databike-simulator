@@ -1,9 +1,12 @@
-package com.example.compass
+package com.uibk.databike
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
+import com.uibk.databike.DataPoint
+import com.uibk.databike.DataPointRepository
+import com.uibk.databike.DataPointRoomDatabase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

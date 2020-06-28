@@ -1,4 +1,4 @@
-package com.example.compass
+package com.example.databike
 
 import org.junit.Test
 

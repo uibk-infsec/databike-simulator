@@ -1,4 +1,4 @@
-package com.example.compass
+package com.uibk.databike
 
 import android.content.Context
 import androidx.room.Database

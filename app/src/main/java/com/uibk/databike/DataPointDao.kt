@@ -1,10 +1,11 @@
-package com.example.compass
+package com.uibk.databike
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.uibk.databike.DataPoint
 
 @Dao
 interface DataPointDao {
