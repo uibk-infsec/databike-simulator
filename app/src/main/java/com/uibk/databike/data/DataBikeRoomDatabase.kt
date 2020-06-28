@@ -9,14 +9,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Database(entities = [DataPoint::class], version = 1, exportSchema = false)
-abstract class DataPointRoomDatabase : RoomDatabase() {
+abstract class DataBikeRoomDatabase : RoomDatabase() {
     abstract fun dataPointDao(): DataPointDao
 
     companion object {
         @Volatile
-        private var INSTANCE: DataPointRoomDatabase? = null
+        private var INSTANCE: DataBikeRoomDatabase? = null
 
-        fun getDatabase(context: Context, scope: CoroutineScope): DataPointRoomDatabase {
+        fun getDatabase(context: Context, scope: CoroutineScope): DataBikeRoomDatabase {
             val tempInstance =
                 INSTANCE
             if (tempInstance != null)
@@ -25,10 +25,10 @@ abstract class DataPointRoomDatabase : RoomDatabase() {
             synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    DataPointRoomDatabase::class.java,
-                    "data_point_database"
+                    DataBikeRoomDatabase::class.java,
+                    "data_bike_database"
                 ).addCallback(
-                    DataPointDatabaseCallback(
+                    DataBikeDataBaseCallback(
                         scope
                     )
                 ).build()
@@ -39,7 +39,7 @@ abstract class DataPointRoomDatabase : RoomDatabase() {
         }
     }
 
-    private class DataPointDatabaseCallback(private val scope: CoroutineScope) :
+    private class DataBikeDataBaseCallback(private val scope: CoroutineScope) :
         RoomDatabase.Callback() {
         override fun onOpen(db: SupportSQLiteDatabase) {
             super.onOpen(db)
