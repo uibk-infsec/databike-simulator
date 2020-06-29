@@ -21,6 +21,8 @@ import com.uibk.databike.data.DataPointViewModelFactory
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
 import java.io.PrintWriter
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 class ListActivity : AppCompatActivity() {
     private lateinit var dataPointViewModel: DataPointViewModel
@@ -96,6 +98,10 @@ class ListActivity : AppCompatActivity() {
                     DataPoint(
                         0,
                         segmentId,
+                        47.253f,
+                        11.353f,
+                        500,
+                        DateTimeFormatter.ISO_INSTANT.format(Instant.now()),
                         absX,
                         absY,
                         absZ

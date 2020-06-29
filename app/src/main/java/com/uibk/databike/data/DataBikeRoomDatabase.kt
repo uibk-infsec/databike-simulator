@@ -7,6 +7,8 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.time.format.DateTimeFormatter
 
 @Database(entities = [DataPoint::class], version = 1, exportSchema = false)
 abstract class DataBikeRoomDatabase : RoomDatabase() {
@@ -48,11 +50,12 @@ abstract class DataBikeRoomDatabase : RoomDatabase() {
         }
 
         suspend fun populateDatabase(dataPointDao: DataPointDao) {
+            val nowString = DateTimeFormatter.ISO_INSTANT.format(Instant.now())
             dataPointDao.deleteAll()
 
-            dataPointDao.insert(DataPoint(0, 0,1f, 1f, 1f))
-            dataPointDao.insert(DataPoint(0, 0, 2f, 2f, 2f))
-            dataPointDao.insert(DataPoint(0, 1, 3f, 3f, 3f))
+            dataPointDao.insert(DataPoint(0, 0,47.253f, 11.353f, 500, nowString, 1f, 1f, 1f))
+            dataPointDao.insert(DataPoint(0, 0, 47.253f, 11.353f, 500, nowString,2f, 2f, 2f))
+            dataPointDao.insert(DataPoint(0, 1, 47.253f, 11.353f, 500, nowString,3f, 3f, 3f))
 
         }
     }
