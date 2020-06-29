@@ -16,7 +16,7 @@ object XmlBuilder {
         builder.append("\t<bikename>$bikeName</bikename>\n")
         builder.append("\t<pedalOffset>$pedalOffset</pedalOffset>\n")
         builder.append("</metadata>\n")
-        builder.append("$content")
+        builder.append(content)
         builder.append("</gpx>")
         return builder.toString()
     }

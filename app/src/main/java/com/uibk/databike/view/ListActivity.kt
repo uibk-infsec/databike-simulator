@@ -21,8 +21,6 @@ import com.uibk.databike.data.DataPointViewModelFactory
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
 import java.io.PrintWriter
-import java.time.Instant
-import java.time.format.DateTimeFormatter
 
 class ListActivity : AppCompatActivity() {
     private lateinit var dataPointViewModel: DataPointViewModel
@@ -89,22 +87,31 @@ class ListActivity : AppCompatActivity() {
 
         if (requestCode == newDataPointActivityRequestCode && resultCode == Activity.RESULT_OK) {
             if (data != null) {
-                val segmentId = data.getIntExtra(NewDataPointActivity.SEGMENT_ID_REPLY, 0)
-                val absX = data.getFloatExtra(NewDataPointActivity.ABS_X_REPLY, 0f)
-                val absY = data.getFloatExtra(NewDataPointActivity.ABS_Y_REPLY, 0f)
-                val absZ = data.getFloatExtra(NewDataPointActivity.ABS_Z_REPLY, 0f)
-
                 dataPointViewModel.insert(
                     DataPoint(
                         0,
-                        segmentId,
-                        47.253f,
-                        11.353f,
-                        500,
-                        DateTimeFormatter.ISO_INSTANT.format(Instant.now()),
-                        absX,
-                        absY,
-                        absZ
+                        data.getIntExtra(NewDataPointActivity.SEGMENT_REPLY, 0),
+                        data.getFloatExtra(NewDataPointActivity.LATITUDE_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.LONGITUDE_REPLY, 0f),
+                        data.getIntExtra(NewDataPointActivity.ELEVATION_REPLY, 0),
+                        data.getStringExtra(NewDataPointActivity.TIME_REPLY) ?: "",
+                        data.getFloatExtra(NewDataPointActivity.ABS_X_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.ABS_Y_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.ABS_Z_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.ADD_X_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.ADD_Y_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.ADD_Z_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.WHEEL_RPM_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.STEERING_ROT_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.PEDAL_ROT_REPLY, 0f),
+                        data.getIntExtra(NewDataPointActivity.PEDAL_ROT_DIR_REPLY, 0),
+                        data.getIntExtra(NewDataPointActivity.GEAR_FRONT_REPLY, 0),
+                        data.getIntExtra(NewDataPointActivity.GEAR_REAR_REPLY, 0),
+                        data.getFloatExtra(NewDataPointActivity.BRAKE_FRONT_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.BRAKE_REAR_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.SUSPENSION_FRONT_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.SUSPENSION_REAR_REPLY, 0f),
+                        data.getFloatExtra(NewDataPointActivity.SEAT_POSITION_REPLY, 0f)
                     )
                 )
             } else {

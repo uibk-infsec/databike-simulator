@@ -15,7 +15,9 @@ class DataPointListAdapter internal constructor(context: Context) :
     private var dataPoints = emptyList<DataPoint>()
 
     inner class DataPointViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val dataPointItemView: TextView = itemView.findViewById(R.id.textView)
+        val latitudeView: TextView = itemView.findViewById(R.id.latitude)
+        val longitudeView: TextView = itemView.findViewById(R.id.longitude)
+        val timeStampView: TextView = itemView.findViewById(R.id.timeStamp)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataPointViewHolder {
@@ -25,7 +27,9 @@ class DataPointListAdapter internal constructor(context: Context) :
 
     override fun onBindViewHolder(holder: DataPointViewHolder, position: Int) {
         val current = dataPoints[position]
-        holder.dataPointItemView.text = current.absRotX.toString()
+        holder.latitudeView.text = current.latitude.toString()
+        holder.longitudeView.text = current.longitude.toString()
+        holder.timeStampView.text = current.timeStamp
     }
 
     internal fun setDataPoints(dataPoints: List<DataPoint>) {
