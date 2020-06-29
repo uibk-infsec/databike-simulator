@@ -59,22 +59,6 @@ object XmlBuilder {
     }
 
     fun fromDataPoint(dataPoint: DataPoint): String {
-        // dummy values for now
-        val addRotX = 0
-        val addRotY = 0
-        val addRotZ = 0
-        val wheelRpm = 0
-        val steeringRot = 0
-        val pedalRot = 0
-        val pedalRotDir = 1
-        val gearFront = 1
-        val gearRear = 1
-        val brakeFront = 0
-        val brakeRear = 0
-        val suspensionFront = 0
-        val suspensionRear = 0
-        val seatPosition = 0
-
         val builder = StringBuilder()
 
         builder.append("<trkpt lat=\"${dataPoint.latitude}\" lon=\"${dataPoint.longitude}\">\n")
