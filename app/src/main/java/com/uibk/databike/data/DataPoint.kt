@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatter
 @Entity(tableName = "data_point")
 data class DataPoint(
     @PrimaryKey(autoGenerate = true) val id: Int,
-    val segmentId: Int,
+    val segment: Int,
     val latitude: Float,
     val longitude: Float,
     val elevation: Int,

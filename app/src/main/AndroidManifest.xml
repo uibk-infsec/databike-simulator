@@ -18,6 +18,8 @@
         </activity>
         <activity android:name="com.uibk.databike.view.NewDataPointActivity">
         </activity>
+        <activity android:name="com.uibk.databike.view.ViewDataPointActivity">
+        </activity>
     </application>
 
 </manifest>

@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context="com.uibk.databike.view.NewDataPointActivity">
+
+        <TextView
+            android:id="@+id/segmentLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="@string/segment"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/segment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ems="10"
+            android:hint="@string/intHint"
+            android:importantForAutofill="no"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/segmentLabel" />
+
+        <TextView
+            android:id="@+id/latitudeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/latitude"
+            app:layout_constraintStart_toStartOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/segment" />
+
+        <TextView
+            android:id="@+id/latitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/latitudeLabel" />
+
+        <TextView
+            android:id="@+id/longitudeLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/longitude"
+            app:layout_constraintStart_toStartOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/latitude" />
+
+        <TextView
+            android:id="@+id/longitude"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/longitudeLabel" />
+
+        <TextView
+            android:id="@+id/elevationLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/elevation"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/longitude" />
+
+        <TextView
+            android:id="@+id/elevation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/elevationLabel" />
+
+        <TextView
+            android:id="@+id/timeStampLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:labelFor="@id/timeStamp"
+            android:text="@string/timeStamp"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/elevation" />
+
+        <TextView
+            android:id="@+id/timeStamp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="16dp"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/timeStampLabel" />
+
+        <TextView
+            android:id="@+id/absRotXLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/absRotX"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/timeStamp" />
+
+        <TextView
+            android:id="@+id/absRotX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/absRotXLabel" />
+
+        <TextView
+            android:id="@+id/absRotYLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/absRotY"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/absRotX" />
+
+        <TextView
+            android:id="@+id/absRotY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/absRotYLabel" />
+
+        <TextView
+            android:id="@+id/absRotZLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/absRotZ"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/absRotY" />
+
+        <TextView
+            android:id="@+id/absRotZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/absRotZLabel" />
+
+        <TextView
+            android:id="@+id/addRotXLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/addRotX"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/absRotZ" />
+
+        <TextView
+            android:id="@+id/addRotX"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/addRotXLabel" />
+
+        <TextView
+            android:id="@+id/addRotYLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/addRotY"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/addRotX" />
+
+        <TextView
+            android:id="@+id/addRotY"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/addRotYLabel" />
+
+        <TextView
+            android:id="@+id/addRotZLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/addRotZ"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/addRotY" />
+
+        <TextView
+            android:id="@+id/addRotZ"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/addRotZLabel" />
+
+        <TextView
+            android:id="@+id/wheelRpmLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/wheel_rpm"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/addRotZ" />
+
+        <TextView
+            android:id="@+id/wheelRpm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/wheelRpmLabel" />
+
+
+        <TextView
+            android:id="@+id/steeringRotLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/steering_rotation"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/wheelRpm" />
+
+        <TextView
+            android:id="@+id/steeringRot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/steeringRotLabel" />
+
+
+        <TextView
+            android:id="@+id/pedalRotLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pedal_rotation"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/steeringRot" />
+
+        <TextView
+            android:id="@+id/pedalRot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/pedalRotLabel" />
+
+
+        <TextView
+            android:id="@+id/pedalRotDirLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/pedalRotDir"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/pedalRot" />
+
+        <TextView
+            android:id="@+id/pedalRotDir"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/intHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/pedalRotDirLabel" />
+
+
+        <TextView
+            android:id="@+id/gearFrontLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/front_gear"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/pedalRotDir" />
+
+        <TextView
+            android:id="@+id/gearFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/intHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/gearFrontLabel" />
+
+
+        <TextView
+            android:id="@+id/gearRearLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/rear_gear"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/gearFront" />
+
+        <TextView
+            android:id="@+id/gearRear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/intHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/gearRearLabel" />
+
+
+        <TextView
+            android:id="@+id/brakeFrontLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/front_brake"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/gearRear" />
+
+        <TextView
+            android:id="@+id/brakeFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/brakeFrontLabel" />
+
+        <TextView
+            android:id="@+id/brakeRearLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/rear_brake"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/brakeFront" />
+
+        <TextView
+            android:id="@+id/brakeRear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/brakeRearLabel" />
+
+
+        <TextView
+            android:id="@+id/suspensionFrontLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/front_suspension"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/brakeRear" />
+
+        <TextView
+            android:id="@+id/suspensionFront"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/suspensionFrontLabel" />
+
+
+        <TextView
+            android:id="@+id/suspensionRearLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/rear_suspension"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/suspensionFront" />
+
+        <TextView
+            android:id="@+id/suspensionRear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/suspensionRearLabel" />
+
+
+        <TextView
+            android:id="@+id/seatPositionLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/seat_position"
+            app:layout_constraintLeft_toLeftOf="@id/segmentLabel"
+            app:layout_constraintTop_toBottomOf="@id/suspensionRear" />
+
+        <TextView
+            android:id="@+id/seatPosition"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/floatHint"
+            android:importantForAutofill="no"
+            app:layout_constraintTop_toBottomOf="@id/seatPositionLabel" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

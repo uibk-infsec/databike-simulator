@@ -1,4 +1,4 @@
-package com.uibk.databike
+package com.uibk.databike.util
 
 import com.uibk.databike.data.DataPoint
 import kotlin.text.StringBuilder
@@ -27,7 +27,11 @@ object XmlBuilder {
 
         builder.append("<trk>\n")
         for (segment in segments)
-            builder.append(buildTrackSegment(segment))
+            builder.append(
+                buildTrackSegment(
+                    segment
+                )
+            )
         builder.append("</trk>\n")
 
         return builder.toString()
@@ -38,7 +42,11 @@ object XmlBuilder {
         val builder = StringBuilder()
 
         builder.append("<trk>\n")
-        builder.append(buildTrackSegment(dataPoints))
+        builder.append(
+            buildTrackSegment(
+                dataPoints
+            )
+        )
         builder.append("</trk>\n")
 
         return builder.toString()
@@ -51,7 +59,11 @@ object XmlBuilder {
         builder.append("<trkseg>\n")
 
         for (dataPoint in dataPoints) {
-            builder.append(fromDataPoint(dataPoint))
+            builder.append(
+                fromDataPoint(
+                    dataPoint
+                )
+            )
         }
 
         builder.append("</trkseg>\n")
