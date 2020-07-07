@@ -1,22 +1,30 @@
 package com.uibk.databike.view
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.databike.R
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uibk.databike.util.XmlBuilder
 import com.uibk.databike.data.DataPointViewModel
 import com.uibk.databike.data.DataPointViewModelFactory
+import com.uibk.databike.util.LATITUDE
+import com.uibk.databike.util.LONGITUDE
 import com.uibk.databike.util.getDataPointFromIntent
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
@@ -24,8 +32,13 @@ import java.io.PrintWriter
 
 class ListActivity : AppCompatActivity() {
     private lateinit var dataPointViewModel: DataPointViewModel
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private var lastLocation: Location? = null
+
     private val newDataPointActivityRequestCode = 1
-    private val pickExportFile = 2
+    private val requestPermissionRequestCode = 2
+    private val pickExportFile = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,12 +63,44 @@ class ListActivity : AppCompatActivity() {
 
         findViewById<FloatingActionButton>(R.id.fab).let {
             it.setOnClickListener {
-                val intent = Intent(this@ListActivity, NewDataPointActivity::class.java)
+                val intent =
+                    Intent(this@ListActivity, NewDataPointActivity::class.java).also { intent ->
+                        lastLocation?.let { location ->
+                            intent.putExtra(LATITUDE, location.latitude.toString())
+                            intent.putExtra(LONGITUDE, location.longitude.toString())
+                        }
+                    }
                 startActivityForResult(intent, newDataPointActivityRequestCode)
             }
         }
 
         setSupportActionBar(findViewById(R.id.toolbar))
+
+        if (ActivityCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ),
+                requestPermissionRequestCode
+            )
+
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Toast.makeText(
+                    this,
+                    "We want the most accurate position possible",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
+        fusedLocationClient.lastLocation.addOnSuccessListener { lastLocation = it }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
