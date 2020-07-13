@@ -21,7 +21,9 @@
         </activity>
         <activity android:name="com.uibk.databike.view.NewDataPointActivity" />
         <activity android:name="com.uibk.databike.view.ViewDataPointActivity" />
+
         <service android:name="com.uibk.databike.sensors.LocationService" />
+        <service android:name="com.uibk.databike.sensors.OrientationService" />
     </application>
 
 </manifest>

@@ -26,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.uibk.databike.data.DataPointViewModel
 import com.uibk.databike.data.DataPointViewModelFactory
 import com.uibk.databike.sensors.LocationService
+import com.uibk.databike.sensors.OrientationService
 import com.uibk.databike.util.*
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
@@ -47,7 +48,19 @@ class ListActivity : AppCompatActivity() {
             locationService = binder.getService()
             isLocationServiceBound = true
         }
+    }
+    private lateinit var orientationService: OrientationService
+    private var isOrientationServiceBound: Boolean = false
+    private val orientationServiceConnection = object: ServiceConnection{
+        override fun onServiceDisconnected(name: ComponentName?) {
+            isOrientationServiceBound = false
+        }
 
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as OrientationService.OrientationBinder
+            orientationService = binder.getService()
+            isOrientationServiceBound = true
+        }
 
     }
 
@@ -90,6 +103,13 @@ class ListActivity : AppCompatActivity() {
                                     Instant.ofEpochMilli(location.time).toString()
                                 )
                             }
+
+                        if(isOrientationServiceBound)
+                            orientationService.getOrientation().let{orientation ->
+                                intent.putExtra(ABS_Z, orientation[0].toString())
+                                intent.putExtra(ABS_X, orientation[1].toString())
+                                intent.putExtra(ABS_Y, orientation[2].toString())
+                            }
                     }
                 startActivityForResult(intent, newDataPointActivityRequestCode)
             }
@@ -105,12 +125,17 @@ class ListActivity : AppCompatActivity() {
         Intent(this, LocationService::class.java).also { intent ->
             bindService(intent, locationServiceConnection, Context.BIND_AUTO_CREATE)
         }
+        Intent(this, OrientationService::class.java).also { intent ->
+            bindService(intent, orientationServiceConnection, Context.BIND_AUTO_CREATE)
+        }
     }
 
     override fun onStop() {
         super.onStop()
         unbindService(locationServiceConnection)
         isLocationServiceBound = false
+        unbindService(orientationServiceConnection)
+        isOrientationServiceBound = false
     }
 
     private fun requestLocationPermissionsIfNecessary() {

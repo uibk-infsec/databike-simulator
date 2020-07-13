@@ -34,6 +34,9 @@ class NewDataPointActivity() : Activity() {
         intent.getStringExtra(LONGITUDE)?.let { findViewById<EditText>(R.id.longitude).setText(it) }
         intent.getStringExtra(ELEVATION)?.let {findViewById<EditText>(R.id.elevation).setText(it)}
         intent.getStringExtra(TIME)?.let{findViewById<EditText>(R.id.timeStamp).setText(it)}
+        intent.getStringExtra(ABS_Z)?.let{findViewById<EditText>(R.id.absRotZ).setText(it)}
+        intent.getStringExtra(ABS_X)?.let{findViewById<EditText>(R.id.absRotX).setText(it)}
+        intent.getStringExtra(ABS_Y)?.let{findViewById<EditText>(R.id.absRotY).setText(it)}
 
         findViewById<Button>(R.id.captureButton).setOnClickListener { addEntry() }
     }
