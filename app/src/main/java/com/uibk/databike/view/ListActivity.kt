@@ -11,7 +11,6 @@ import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.IBinder
-import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
@@ -35,11 +34,6 @@ import java.time.Instant
 
 class ListActivity : AppCompatActivity() {
     private lateinit var dataPointViewModel: DataPointViewModel
-
-    private lateinit var fusedLocationClient: FusedLocationProviderClient
-    private var lastLocation: Location? = null
-    private var locationRequest: LocationRequest? = null
-    private lateinit var locationCallback: LocationCallback
 
     private lateinit var locationService: LocationService
     private var isLocationServiceBound: Boolean = false
@@ -93,7 +87,7 @@ class ListActivity : AppCompatActivity() {
                                 intent.putExtra(ELEVATION, location.altitude.toString())
                                 intent.putExtra(
                                     TIME,
-                                    Instant.ofEpochSecond(location.time).toString()
+                                    Instant.ofEpochMilli(location.time).toString()
                                 )
                             }
                     }
@@ -103,23 +97,7 @@ class ListActivity : AppCompatActivity() {
 
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        locationRequest = LocationRequest.create()?.apply {
-            interval = 5000
-            fastestInterval = 1000
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-        }
-
-        locationCallback = object : LocationCallback() {
-            override fun onLocationResult(locationResult: LocationResult?) {
-                locationResult?.let { lastLocation = locationResult.lastLocation }
-            }
-        }
-
-        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
-
-
-
-        startLocationUpdates()
+        requestLocationPermissionsIfNecessary()
     }
 
     override fun onStart() {
@@ -135,7 +113,7 @@ class ListActivity : AppCompatActivity() {
         isLocationServiceBound = false
     }
 
-    private fun startLocationUpdates() {
+    private fun requestLocationPermissionsIfNecessary() {
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -158,11 +136,6 @@ class ListActivity : AppCompatActivity() {
                 ).show()
             }
         }
-        fusedLocationClient.requestLocationUpdates(
-            locationRequest,
-            locationCallback,
-            Looper.getMainLooper()
-        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -186,21 +159,6 @@ class ListActivity : AppCompatActivity() {
             startActivityForResult(intent, pickExportFile)
         }
         return true
-    }
-
-    override fun onPause() {
-        super.onPause()
-        stopLocationUpdates()
-    }
-
-    private fun stopLocationUpdates() {
-        fusedLocationClient.removeLocationUpdates(locationCallback)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        startLocationUpdates()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
