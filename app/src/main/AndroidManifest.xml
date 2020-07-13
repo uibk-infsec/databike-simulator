@@ -2,8 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.databike">
 
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="false"
@@ -19,10 +19,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.uibk.databike.view.NewDataPointActivity">
-        </activity>
-        <activity android:name="com.uibk.databike.view.ViewDataPointActivity">
-        </activity>
+        <activity android:name="com.uibk.databike.view.NewDataPointActivity" />
+        <activity android:name="com.uibk.databike.view.ViewDataPointActivity" />
+        <service android:name="com.uibk.databike.sensors.LocationService" />
     </application>
 
 </manifest>

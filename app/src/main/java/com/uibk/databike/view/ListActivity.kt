@@ -2,11 +2,15 @@ package com.uibk.databike.view
 
 import android.Manifest
 import android.app.Activity
+import android.content.ComponentName
+import android.content.Context
 import android.content.Intent
+import android.content.ServiceConnection
 import android.content.pm.PackageManager
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.IBinder
 import android.os.Looper
 import android.util.Log
 import android.view.Menu
@@ -20,15 +24,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.databike.R
 import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.uibk.databike.util.XmlBuilder
 import com.uibk.databike.data.DataPointViewModel
 import com.uibk.databike.data.DataPointViewModelFactory
-import com.uibk.databike.util.LATITUDE
-import com.uibk.databike.util.LONGITUDE
-import com.uibk.databike.util.getDataPointFromIntent
+import com.uibk.databike.sensors.LocationService
+import com.uibk.databike.util.*
 import kotlinx.android.synthetic.main.activity_list.*
 import java.io.FileOutputStream
 import java.io.PrintWriter
+import java.time.Instant
 
 class ListActivity : AppCompatActivity() {
     private lateinit var dataPointViewModel: DataPointViewModel
@@ -37,6 +40,22 @@ class ListActivity : AppCompatActivity() {
     private var lastLocation: Location? = null
     private var locationRequest: LocationRequest? = null
     private lateinit var locationCallback: LocationCallback
+
+    private lateinit var locationService: LocationService
+    private var isLocationServiceBound: Boolean = false
+    private val locationServiceConnection = object : ServiceConnection {
+        override fun onServiceDisconnected(name: ComponentName?) {
+            isLocationServiceBound = false
+        }
+
+        override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
+            val binder = service as LocationService.LocationBinder
+            locationService = binder.getService()
+            isLocationServiceBound = true
+        }
+
+
+    }
 
     private val newDataPointActivityRequestCode = 1
     private val requestPermissionRequestCode = 2
@@ -67,10 +86,16 @@ class ListActivity : AppCompatActivity() {
             it.setOnClickListener {
                 val intent =
                     Intent(this@ListActivity, NewDataPointActivity::class.java).also { intent ->
-                        lastLocation?.let { location ->
-                            intent.putExtra(LATITUDE, location.latitude.toString())
-                            intent.putExtra(LONGITUDE, location.longitude.toString())
-                        }
+                        if (isLocationServiceBound)
+                            locationService.getLocation().let { location ->
+                                intent.putExtra(LATITUDE, location.latitude.toString())
+                                intent.putExtra(LONGITUDE, location.longitude.toString())
+                                intent.putExtra(ELEVATION, location.altitude.toString())
+                                intent.putExtra(
+                                    TIME,
+                                    Instant.ofEpochSecond(location.time).toString()
+                                )
+                            }
                     }
                 startActivityForResult(intent, newDataPointActivityRequestCode)
             }
@@ -95,6 +120,19 @@ class ListActivity : AppCompatActivity() {
 
 
         startLocationUpdates()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Intent(this, LocationService::class.java).also { intent ->
+            bindService(intent, locationServiceConnection, Context.BIND_AUTO_CREATE)
+        }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        unbindService(locationServiceConnection)
+        isLocationServiceBound = false
     }
 
     private fun startLocationUpdates() {
